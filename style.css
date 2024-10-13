@@ -201,3 +201,72 @@ h2 {
   justify-content: center;
   gap: 10px;
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .button-normal,
+  .button-e,
+  .hesapla,
+  .normalekle,
+  #eekle {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
+
+  .monthInput {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .container-header {
+    gap: 5rem; 
+  }
+
+  .container-content-product {
+    flex-direction: column; 
+    gap: 20px; 
+  }
+
+  .scroll-container {
+    max-height: 150px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .button-normal,
+  .button-e,
+  .hesapla,
+  .normalekle,
+  #eekle {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 20px; 
+  }
+
+  .monthInput {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .container-header {
+    flex-direction: column; 
+    align-items: center; 
+    gap: 1rem; 
+  }
+
+  .button-cont-cover {
+    flex-direction: column; 
+    align-items: center;
+  }
+}
+
