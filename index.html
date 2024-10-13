@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yargılama Gideri Hesaplama</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    </style> 
+  </head>
+  <body>
+    <div class="button-cont">
+      <div class="button-cont-cover">
+        <div class="button-normal" id="normalTeb">Normal Tebligat</div>
+        <div class="button-e" id="eTeb">E-Tebligat</div>
+      </div>
+      <div class="container" id="normalTebligat">
+        <h2>Normal Tebligat Hesaplama</h2>
+        <div class="container-cover">
+          <div class="container-header">
+            <p>Tarih</p>
+            <p>Ücreti</p>
+            <button type="button" id="normEkle" class="normalekle">Ekle</button>
+          </div>
+          <div class="container-content" id="dateTable">
+          <div class="scroll-container">
+            <div class="container-content-product">
+              <input type="date" class="monthInput" />
+              <p class="approxResult"></p>
+            </div>
+          </div>         
+          </div>
+        </div>
+        <button class="hesapla">Hesapla</button>
+        <div id="totalPriceContainer">
+          <p id="totalPrice">Toplam Ücret: 0 ₺</p>
+        </div>
+      </div>
+      <div
+        class="container"
+        id="eTebligat"
+      >
+        <h2>E-Tebligat Hesaplama</h2>
+        <div class="container-cover">
+          <div class="container-header" style="background: #2b4450">
+            <p>Tarih</p>
+            <p>Ücreti</p>
+            <button type="button" id="eekle" class="ekle">Ekle</button>
+          </div>
+          <div class="container-content" id="edateTable">
+            <div class="scroll-container">
+                <div class="econtainer-content-product container-content-product">
+                    <input type="date" class="emonthInput monthInput" />
+                    <p class="eapproxResult"></p>
+                </div>
+            </div>
+        </div>       
+        </div>
+        <button class="ehesapla">Hesapla</button>
+        <div id="totalPriceContainer">
+          <p id="etotalPrice">Toplam Ücret: 0 ₺</p>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
