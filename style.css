@@ -73,7 +73,7 @@ h2 {
   transition: 1s;
 }
 
-.monthInput {
+#monthInput {
   padding: 8px 15px;
   font-size: 15px;
   font-weight: 900;
@@ -220,7 +220,7 @@ h2 {
     font-size: 16px;
   }
 
-  .monthInput {
+  #monthInput {
     padding: 6px 10px;
     font-size: 14px;
   }
@@ -252,7 +252,7 @@ h2 {
     font-size: 20px; 
   }
 
-  .monthInput {
+  #monthInput {
     padding: 2px 5px;
     font-size: 8px;
   }
