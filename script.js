@@ -28,7 +28,7 @@ $(function () {
       if (!isNaN(price)) total += price;
     });
 
-    $("#totalPrice").text(`Toplam Ücret: ${total} ₺`);
+    $("#totalPrice").text(`Toplam Ücret: ${total.toFixed(2)} ₺`);
   });
 
   $("#normalTeb").click(function () {
@@ -42,7 +42,7 @@ $(function () {
   $(document).on("click", "#normEkle", function () {
     const newRow = `
       <div class="container-content-product">
-        <input type="date" class="monthInput" />
+        <input type="date" id="monthInput" class="monthInput" />
         <p class="approxResult"></p>
       </div>
     `;
@@ -202,7 +202,7 @@ $(function () {
       if (!isNaN(eprice)) etotal += eprice;
     });
 
-    $("#etotalPrice").text(`Toplam Ücret: ${etotal} ₺`);
+    $("#etotalPrice").text(`Toplam Ücret: ${etotal.toFixed(2)} ₺`);
   });
 
   function egetApproxValue(emonthValue, edata) {
@@ -245,7 +245,7 @@ $(function () {
   $(document).on("click", "#eekle", function () {
     const enewRow = `
       <div class="econtainer-content-product container-content-product">
-        <input type="date" class="emonthInput monthInput" />
+        <input type="date" id="monthInput" class="emonthInput" />
         <p class="eapproxResult approxResult"></p>
       </div>
     `;
