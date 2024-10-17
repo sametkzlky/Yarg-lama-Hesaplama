@@ -1,5 +1,5 @@
 $(function () {
-  $(document).on("change", ".monthInput", function () {
+  $(document).on("change", ".normtebInput", function () {
     const monthValue = $(this).val();
     const approxResultElement = $(this)
       .closest(".container-content-product")
@@ -41,12 +41,12 @@ $(function () {
 
   $(document).on("click", "#normEkle", function () {
     const newRow = `
-      <div class="container-content-product">
-        <input type="date" id="monthInput" class="monthInput" />
-        <p class="approxResult"></p>
+     <div class="container-content-product">
+          <input type="date" id="normteb" class="normtebInput" />
+          <p class="approxResult"></p>
       </div>
     `;
-    $("#dateTable .scroll-container").append(newRow);
+    $("#normTable .scroll-container").append(newRow);
   });
 
   function getApproxValue(monthValue, data) {
@@ -173,7 +173,7 @@ $(function () {
     $(hideId).slideUp(1000);
   }
 
-  $(document).on("change", ".emonthInput", function () {
+  $(document).on("change", ".etebInput", function () {
     const emonthValue = $(this).val();
     const eapproxResultElement = $(this)
       .closest(".econtainer-content-product")
@@ -245,11 +245,11 @@ $(function () {
   $(document).on("click", "#eekle", function () {
     const enewRow = `
       <div class="econtainer-content-product container-content-product">
-        <input type="date" id="monthInput" class="emonthInput" />
-        <p class="eapproxResult approxResult"></p>
+          <input type="date" id="eteb" class="etebInput" />
+          <p class="eapproxResult"></p>
       </div>
     `;
-    $("#edateTable .scroll-container").append(enewRow);
+    $("#etebTable .scroll-container").append(enewRow);
   });
 
   $("#normalTeb").on("click", function () {
