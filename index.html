@@ -9,6 +9,7 @@
     </style> 
   </head>
   <body>
+    <img src="./logo.png" alt="" class="logo">
     <div class="button-cont">
       <div class="button-cont-cover">
         <div class="button-normal" id="normalTeb">Normal Tebligat</div>
@@ -20,31 +21,35 @@
           <div class="container-header">
             <p>Tarih</p>
             <p>Ücreti</p>
+            <p>Adet</p>
             <button type="button" id="normEkle" class="normalekle">Ekle</button>
           </div>
           <div class="container-content" id="normTable">
           <div class="scroll-container">
             <div class="container-content-product">
               <input type="date" id="normteb" class="normtebInput" />
-              <p class="approxResult"></p>
+              <div class="approxResult"></div>             
+                <input type="number" class="piece" id="normPiece" value="1" min="1">
+                <p class="clean" id="clear">x</p>              
             </div>
           </div>         
           </div>
         </div>
-        <button class="hesapla">Hesapla</button>
+        <div class="buttonclass">
+          <button class="hesapla">Hesapla</button>
+          <button class="clearButton" id="clearBtn">Temizle</button>
+        </div>
         <div id="totalPriceContainer">
           <p id="totalPrice">Toplam Ücret: 0 ₺</p>
         </div>
       </div>
-      <div
-        class="container"
-        id="eTebligat"
-      >
+      <div class="container" id="eTebligat">
         <h2>E-Tebligat Hesaplama</h2>
         <div class="container-cover">
           <div class="container-header">
             <p>Tarih</p>
             <p>Ücreti</p>
+            <p>Adet</p>
             <button type="button" id="eekle" class="ekle">Ekle</button>
           </div>
           <div class="container-content" id="etebTable">
@@ -52,11 +57,16 @@
                 <div class="econtainer-content-product container-content-product">
                     <input type="date" id="eteb" class="etebInput" />
                     <p class="eapproxResult"></p>
+                    <input type="number" class="piece" id="ePiece" value="1" min="1">
+                    <p class="clean" id="eclear">x</p>
                 </div>
             </div>
         </div>       
         </div>
-        <button class="ehesapla">Hesapla</button>
+        <div class="buttonclass">
+          <button class="ehesapla">Hesapla</button>
+          <button class="clearButton" id="eclearBtn">Temizle</button>
+        </div>
         <div id="totalPriceContainer">
           <p id="etotalPrice">Toplam Ücret: 0 ₺</p>
         </div>
@@ -66,3 +76,4 @@
     <script src="./script.js"></script>
   </body>
 </html>
+
