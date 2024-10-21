@@ -39,8 +39,8 @@ $(function () {
       .closest(".container-content-product")
       .find(".approxResult");
 
-    if (pieceValue < 1) {
-      $(this).val(1);
+    if (pieceValue < 0) {
+      $(this).val(0);
     }
 
     if (currentPrice > 0 && pieceValue > 0) {
