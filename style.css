@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: sans-serif;
-  background-image: url(../image/adliye.jpg);
+  background-image: url(./adliye.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   backdrop-filter: blur(4px);
