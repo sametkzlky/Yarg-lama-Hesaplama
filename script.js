@@ -14,7 +14,7 @@ $(function () {
       .closest(".container-content-product")
       .find("#clear");
 
-    fetch("./data.json")
+    fetch("./src/data/data.json")
       .then((response) => response.json())
       .then((data) => {
         if (monthValue) {
@@ -241,7 +241,7 @@ $(function () {
       .closest(".econtainer-content-product")
       .find("#eclear");
 
-    fetch("./edata.json")
+    fetch("./src/data/edata.json")
       .then((response) => response.json())
       .then((edata) => {
         if (emonthValue) {
@@ -419,11 +419,57 @@ $(function () {
   });
 
   $(document).on("click", "#clear", function () {
-    $(this).closest(".container-content-product").remove();
+    const productPriceText = $(this)
+      .closest(".container-content-product")
+      .find(".approxResult")
+      .text()
+      .replace("₺", "")
+      .trim();
+    const productPrice = parseFloat(productPriceText);
+
+    if (!isNaN(productPrice)) {
+      $(this).closest(".container-content-product").remove();
+
+      let total = 0;
+
+      $(".approxResult").each(function () {
+        const priceText = $(this).text().replace("₺", "").trim();
+        const price = parseFloat(priceText);
+        if (!isNaN(price)) total += price;
+      });
+
+      $("#totalPrice").text(
+        `Toplam Normal Tebligat Ücreti: ${total.toFixed(2)} ₺`
+      );
+    }
   });
 
   $(document).on("click", "#eclear", function () {
-    $(this).closest(".econtainer-content-product").remove();
+    const productPriceText = $(this)
+      .closest(".econtainer-content-product")
+      .find(".eapproxResult")
+      .text()
+      .replace("₺", "")
+      .trim();
+    const productPrice = parseFloat(productPriceText);
+
+    if (!isNaN(productPrice)) {
+      $(this).closest(".econtainer-content-product").remove();
+
+      let etotal = 0;
+
+      $(".eapproxResult").each(function () {
+        const epriceText = $(this).text().replace("₺", "").trim();
+        const eprice = parseFloat(epriceText);
+        if (!isNaN(eprice)) {
+          etotal += eprice;
+        }
+      });
+
+      $("#etotalPrice").text(
+        `Toplam E-Tebligat Ücreti: ${etotal.toFixed(2)} ₺`
+      );
+    }
   });
 
   $("#clearBtn").on("click", function () {
