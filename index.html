@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yargılama Gideri Hesaplama</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     </style> 
   </head>
   <body>
-    <img src="./logo.png" alt="" class="logo">
+    <img src="./src/image/logo.png" alt="" class="logo">
     <div class="button-cont">
+      <h2 style="color: black;">Yargılama Gideri Hesaplama</h2>
       <div class="button-cont-cover">
-        <div class="button-normal" id="normalTeb">Normal Tebligat</div>
-        <div class="button-e" id="eTeb">E-Tebligat</div>
+        <h3 style="color: black;">Tebligat Türünü Seçiniz :</h3>
+        <select id="tebligatSelector">
+          <option class="button-normal" id="normalTeb">Normal Tebligat</option>
+          <option class="button-e" id="eTeb">E-Tebligat</option>
+        </select>
       </div>
       <div class="container" id="normalTebligat">
-        <h2>Normal Tebligat Hesaplama</h2>
         <div class="container-cover">
           <div class="container-header">
             <p>Tarih</p>
@@ -36,15 +39,13 @@
           </div>
         </div>
         <div class="buttonclass">
-          <button class="hesapla">Hesapla</button>
-          <button class="clearButton" id="clearBtn">Temizle</button>
+          <button class="hesapla">Hesapla</button>        
         </div>
         <div id="totalPriceContainer">
-          <p id="totalPrice">Toplam Ücret: 0 ₺</p>
+          <p id="totalPrice" class="normtotal"></p>
         </div>
       </div>
       <div class="container" id="eTebligat">
-        <h2>E-Tebligat Hesaplama</h2>
         <div class="container-cover">
           <div class="container-header">
             <p>Tarih</p>
@@ -64,16 +65,37 @@
         </div>       
         </div>
         <div class="buttonclass">
-          <button class="ehesapla">Hesapla</button>
-          <button class="clearButton" id="eclearBtn">Temizle</button>
+          <button class="ehesapla">Hesapla</button>        
         </div>
         <div id="totalPriceContainer">
-          <p id="etotalPrice">Toplam Ücret: 0 ₺</p>
+          <p id="etotalPrice" class="etotal"></p>
         </div>
       </div>
+      <br>
+    <h2 style="color: black;">Diğer Yargılama Giderleri</h2>
+    <div class="overCont" style="color: black; font-size: 20px;">
+      <div class="overContCover">
+        <p>Posta Gideri :</p> 
+        <p>Bilirkişi Sarf Gideri :</p> 
+        <p>İmaj-Export Gideri :</p> 
+        <p>Diğer Yargılama Giderleri :</p>
+      </div>  
+      <div class="overContCover-inp">
+        <input type="text" class="inp">
+        <span class="placeholder-text">₺</span>
+        <input type="text" class="inp">
+        <span class="placeholder-text-two">₺</span>
+        <input type="text" class="inp">
+        <span class="placeholder-text-three">₺</span>
+        <input type="text" class="inp">
+        <span class="placeholder-text-four">₺</span>
+      </div>   
+    </div> 
+    <button class="total">Toplam Gider</button>
+    <div class="result"></div>    
+    <button class="clearButton eclearBtn" id="clearBtn">Temizle</button>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
-
