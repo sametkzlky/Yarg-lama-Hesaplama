@@ -278,8 +278,7 @@ $(function () {
 
   $(".overContCover-inp input").on("keydown", function (event) {
     if (event.key === "Enter") {
-      // Enter tuşu kontrolü
-      $(".total").click(); // .total butonunun click işlevini tetikle
+      $(".total").click();
     }
   });
 
@@ -311,15 +310,41 @@ $(function () {
 
     $(".result").html(
       `
-      Normal Tebligat Gideri: ${priceText} TL<br><br>
-      E-Tebligat Gideri: ${epriceText} TL<br><br>
-      Posta Gideri: ${postaGideri} TL<br><br>
-      Bilirkişi Gideri: ${bilirkişiGideri} TL<br><br>
-      İmaj-Export Gideri: ${imajExportGideri} TL <br><br>
-      Diğer Yargılama Giderleri: ${digerGiderler} TL <br><br>
-      Toplam Yargılama Gideri: ${toplamGider} TL 
-    `
+        Normal Tebligat Gideri: ${priceText} TL<br><br>
+        E-Tebligat Gideri: ${epriceText} TL<br><br>
+        Posta Gideri: ${postaGideri} TL<br><br>
+        Bilirkişi Gideri: ${bilirkişiGideri} TL<br><br>
+        İmaj-Export Gideri: ${imajExportGideri} TL <br><br>
+        Diğer Yargılama Giderleri: ${digerGiderler} TL <br><br>
+        Toplam Yargılama Gideri: ${toplamGider} TL <br><br>
+        <div class="dividecont"> 
+          Toplam Yargılama Giderini Sanık Bazında Bölün:  ${toplamGider} / 
+          <input type="number" id="divide" /> 
+          <button id="divBtn">BÖL</button>
+        </div><br>
+        <div id="resultAfterDivide"></div> 
+        `
     );
+
+    $("#divBtn").click(function () {
+      var divideValue = $("#divide").val();
+
+      if (divideValue && !isNaN(divideValue) && divideValue != 0) {
+        var result = toplamGider / divideValue;
+        $("#resultAfterDivide").html(
+          `Sanık bazında yargılama gideri: ${result.toFixed(2)} TL`
+        );
+      } else {
+        $("#resultAfterDivide").html(
+          "Sıfırdan farklı geçerli bir sayı giriniz."
+        );
+      }
+    });
+    $("#divide").keypress(function (e) {
+      if (e.which == 13) { 
+        $("#divBtn").click();
+      }
+    });
   });
 
   $(document).on("click", ".ehesapla", function () {
