@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   align-items: center;
   font-family: sans-serif;
-  background-image: url(./adliye.jpg);
+  background-image: url(../image/adliye.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   backdrop-filter: blur(4px);
@@ -274,7 +274,7 @@ h2 {
 .overCont {
   display: flex;
   gap: 15px;
-  color: white;
+  color: black;
   font-size: 20px;
   border-radius: 15px;
   padding: 15px;
@@ -429,7 +429,7 @@ select {
   }
 
   .button-cont {
-    width: 380px;
+    width: 320px;
   }
 
   body {
@@ -440,16 +440,34 @@ select {
     font-size: 20px;
   }
   #eteb {
-    padding: 4px 10px;
+    padding: 3px 3px;
+  }
+  .overContCover-inp input {
+    margin-bottom: 2px;
+  }
+  .overCont {
+    font-size: 16px;
+  }
+  .placeholder-text-three {
+    position: absolute;
+    top: 65px;
+  }
+  .placeholder-text-four {
+    position: absolute;
+    top: 95px;
+  }
+  .result {
+    font-size: 17px;
   }
   #normteb {
-    padding: 4px 10px;
+    padding: 3px 3px;
+    margin-right: 5px;
   }
   .approxResult {
-    width: 41px;
+    width: 5px;
   }
   .eapproxResult {
-    width: 41px;
+    width: 5px;
   }
   .piece {
     margin-right: 30px;
