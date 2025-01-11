@@ -14,7 +14,7 @@ $(function () {
       .closest(".container-content-product")
       .find("#clear");
 
-    fetch("./data.json")
+    fetch("./src/data/data.json")
       .then((response) => response.json())
       .then((data) => {
         if (monthValue) {
@@ -39,8 +39,8 @@ $(function () {
       .closest(".container-content-product")
       .find(".approxResult");
 
-    if (pieceValue < 0) {
-      $(this).val(0);
+    if (pieceValue < 1) {
+      $(this).val(1);
     }
 
     if (currentPrice > 0 && pieceValue > 0) {
@@ -58,15 +58,19 @@ $(function () {
       if (!isNaN(price)) total += price;
     });
 
-    $("#totalPrice").text(`Toplam Ücret: ${total.toFixed(2)} ₺`);
+    $("#totalPrice").text(
+      `Toplam Normal Tebligat Ücreti: ${total.toFixed(2)} ₺`
+    );
   });
 
-  $("#normalTeb").click(function () {
-    toggleContainers("#normalTebligat", "#eTebligat");
-  });
-
-  $("#eTeb").click(function () {
-    toggleContainers("#eTebligat", "#normalTebligat");
+  $("#tebligatSelector").change(function () {
+    if ($(this).val() == "Normal Tebligat") {
+      $("#normalTebligat").show();
+      $("#eTebligat").hide();
+    } else {
+      $("#normalTebligat").hide();
+      $("#eTebligat").show();
+    }
   });
 
   $(document).on("click", "#normEkle", function () {
@@ -109,27 +113,111 @@ $(function () {
 
   function getApproxValue(monthValue, data) {
     const dateRanges = [
-      { start: "2005-01-01", end: "2006-01-01", value: data.ikibinbes.butunaylar,},
-      { start: "2006-01-01", end: "2008-01-01", value: data.ikibinaltiyedi.butunaylar,},
-      { start: "2008-01-01", end: "2010-01-01", value: data.ikibinsekizdokuz.butunaylar,},
-      { start: "2010-01-01", end: "2011-01-01", value: data.ikibinon.butunaylar,},
-      { start: "2011-01-01", end: "2012-01-01", value: data.ikibinonbir.butunaylar,},
-      { start: "2012-01-01", end: "2013-01-01", value: data.ikibinoniki.butunaylar,},
-      { start: "2013-01-01", end: "2014-06-01", value: data.ikibinonuc.butunaylar,},
-      { start: "2014-06-01", end: "2015-05-01", value: data.ikibinondorthaziran.butunaylar,},
-      { start: "2015-05-01", end: "2016-07-12", value: data.ikibinonbesmayis.butunaylar,},
-      { start: "2016-07-12", end: "2017-09-20", value: data.ikibinonaltitemmuz.butunaylar,},
-      { start: "2017-09-20", end: "2018-01-02", value: data.ikibinonyedieylul.butunaylar,},
-      { start: "2018-01-02", end: "2019-05-20", value: data.ikibinonsekizocak.butunaylar,},
-      { start: "2019-05-20", end: "2019-11-01", value: data.ikibinondokuzmayis.butunaylar,},
-      { start: "2019-11-01", end: "2021-11-01", value: data.ikibinondokuzkasim.butunaylar,},
-      { start: "2021-11-01", end: "2022-02-07", value: data.ikibinyirmibirkasim.butunaylar,},
-      { start: "2022-02-07", end: "2022-08-15", value: data.ikibinyirmiikisubat.butunaylar,},
-      { start: "2022-08-15", end: "2023-02-01", value: data.ikibinyirmiikiagustos.butunaylar,},
-      { start: "2023-02-01", end: "2023-08-01", value: data.ikibinyirmiucsubat.butunaylar,},
-      { start: "2023-08-01", end: "2024-01-22", value: data.ikibinyirmiucagustos.butunaylar,},
-      { start: "2024-01-22", end: "2024-06-01", value: data.ikibinyirmidortocak.butunaylar,},
-      { start: "2024-06-01", end: "2030-06-01", value: data.ikibinyirmidorthaziran.butunaylar,},
+      {
+        start: "2005-01-01",
+        end: "2006-01-01",
+        value: data.ikibinbes.butunaylar,
+      },
+      {
+        start: "2006-01-01",
+        end: "2008-01-01",
+        value: data.ikibinaltiyedi.butunaylar,
+      },
+      {
+        start: "2008-01-01",
+        end: "2010-01-01",
+        value: data.ikibinsekizdokuz.butunaylar,
+      },
+      {
+        start: "2010-01-01",
+        end: "2011-01-01",
+        value: data.ikibinon.butunaylar,
+      },
+      {
+        start: "2011-01-01",
+        end: "2012-01-01",
+        value: data.ikibinonbir.butunaylar,
+      },
+      {
+        start: "2012-01-01",
+        end: "2013-01-01",
+        value: data.ikibinoniki.butunaylar,
+      },
+      {
+        start: "2013-01-01",
+        end: "2014-06-01",
+        value: data.ikibinonuc.butunaylar,
+      },
+      {
+        start: "2014-06-01",
+        end: "2015-05-01",
+        value: data.ikibinondorthaziran.butunaylar,
+      },
+      {
+        start: "2015-05-01",
+        end: "2016-07-12",
+        value: data.ikibinonbesmayis.butunaylar,
+      },
+      {
+        start: "2016-07-12",
+        end: "2017-09-20",
+        value: data.ikibinonaltitemmuz.butunaylar,
+      },
+      {
+        start: "2017-09-20",
+        end: "2018-01-02",
+        value: data.ikibinonyedieylul.butunaylar,
+      },
+      {
+        start: "2018-01-02",
+        end: "2019-05-20",
+        value: data.ikibinonsekizocak.butunaylar,
+      },
+      {
+        start: "2019-05-20",
+        end: "2019-11-01",
+        value: data.ikibinondokuzmayis.butunaylar,
+      },
+      {
+        start: "2019-11-01",
+        end: "2021-11-01",
+        value: data.ikibinondokuzkasim.butunaylar,
+      },
+      {
+        start: "2021-11-01",
+        end: "2022-02-07",
+        value: data.ikibinyirmibirkasim.butunaylar,
+      },
+      {
+        start: "2022-02-07",
+        end: "2022-08-15",
+        value: data.ikibinyirmiikisubat.butunaylar,
+      },
+      {
+        start: "2022-08-15",
+        end: "2023-02-01",
+        value: data.ikibinyirmiikiagustos.butunaylar,
+      },
+      {
+        start: "2023-02-01",
+        end: "2023-08-01",
+        value: data.ikibinyirmiucsubat.butunaylar,
+      },
+      {
+        start: "2023-08-01",
+        end: "2024-01-22",
+        value: data.ikibinyirmiucagustos.butunaylar,
+      },
+      {
+        start: "2024-01-22",
+        end: "2024-06-01",
+        value: data.ikibinyirmidortocak.butunaylar,
+      },
+      {
+        start: "2024-06-01",
+        end: "2030-06-01",
+        value: data.ikibinyirmidorthaziran.butunaylar,
+      },
     ];
 
     for (const range of dateRanges) {
@@ -139,12 +227,6 @@ $(function () {
     }
 
     return "Bilinmiyor";
-  }
-
-  function toggleContainers(showId, hideId) {
-    $(".button-cont-cover div").removeClass("active");
-    $(showId).slideDown(1000).addClass("active");
-    $(hideId).slideUp(1000);
   }
 
   $(document).on("change", ".etebInput", function () {
@@ -159,7 +241,7 @@ $(function () {
       .closest(".econtainer-content-product")
       .find("#eclear");
 
-    fetch("./edata.json")
+    fetch("./src/data/edata.json")
       .then((response) => response.json())
       .then((edata) => {
         if (emonthValue) {
@@ -194,6 +276,52 @@ $(function () {
     }
   });
 
+  $(".overContCover-inp input").on("keydown", function (event) {
+    if (event.key === "Enter") {
+      // Enter tuşu kontrolü
+      $(".total").click(); // .total butonunun click işlevini tetikle
+    }
+  });
+
+  $(".total").click(function () {
+    var postaGideri =
+      parseFloat($(".overContCover-inp input").eq(0).val()) || 0;
+    var bilirkişiGideri =
+      parseFloat($(".overContCover-inp input").eq(1).val()) || 0;
+    var imajExportGideri =
+      parseFloat($(".overContCover-inp input").eq(2).val()) || 0;
+    var digerGiderler =
+      parseFloat($(".overContCover-inp input").eq(3).val()) || 0;
+
+    var normTotal = $(".normtotal").text();
+    var priceText = parseFloat(normTotal.replace(/[^\d.-]/g, "")) || 0;
+
+    var eTotal = $(".etotal").text();
+    var epriceText = parseFloat(eTotal.replace(/[^\d.-]/g, "")) || 0;
+    epriceText = Math.abs(epriceText);
+
+    var toplamTebligatGideri = priceText + epriceText;
+
+    var toplamGider =
+      toplamTebligatGideri +
+      postaGideri +
+      bilirkişiGideri +
+      imajExportGideri +
+      digerGiderler;
+
+    $(".result").html(
+      `
+      Normal Tebligat Gideri: ${priceText} TL<br><br>
+      E-Tebligat Gideri: ${epriceText} TL<br><br>
+      Posta Gideri: ${postaGideri} TL<br><br>
+      Bilirkişi Gideri: ${bilirkişiGideri} TL<br><br>
+      İmaj-Export Gideri: ${imajExportGideri} TL <br><br>
+      Diğer Yargılama Giderleri: ${digerGiderler} TL <br><br>
+      Toplam Yargılama Gideri: ${toplamGider} TL 
+    `
+    );
+  });
+
   $(document).on("click", ".ehesapla", function () {
     let etotal = 0;
 
@@ -203,16 +331,36 @@ $(function () {
       if (!isNaN(eprice)) etotal += eprice;
     });
 
-    $("#etotalPrice").text(`Toplam Ücret: ${etotal.toFixed(2)} ₺`);
+    $("#etotalPrice").text(`Toplam E-Tebligat Ücreti: ${etotal.toFixed(2)} ₺`);
   });
 
   function egetApproxValue(emonthValue, edata) {
     const edateRanges = [
-      { start: "2019-01-01", end: "2019-10-14", value: edata.eikibinondokuz.ebutunaylar,},
-      { start: "2019-10-14", end: "2022-02-14", value: edata.eikibinondokuzekim.ebutunaylar,},
-      { start: "2022-02-14", end: "2022-08-15", value: edata.eikibinyirmiikisubat.ebutunaylar,},
-      { start: "2022-08-15", end: "2023-02-01", value: edata.eikibinyirmiikiagustos.ebutunaylar,},
-      { start: "2023-02-01", end: "2030-01-01", value: edata.eikibinyirmiucsubat.ebutunaylar,},
+      {
+        start: "2019-01-01",
+        end: "2019-10-14",
+        value: edata.eikibinondokuz.ebutunaylar,
+      },
+      {
+        start: "2019-10-14",
+        end: "2022-02-14",
+        value: edata.eikibinondokuzekim.ebutunaylar,
+      },
+      {
+        start: "2022-02-14",
+        end: "2022-08-15",
+        value: edata.eikibinyirmiikisubat.ebutunaylar,
+      },
+      {
+        start: "2022-08-15",
+        end: "2023-02-01",
+        value: edata.eikibinyirmiikiagustos.ebutunaylar,
+      },
+      {
+        start: "2023-02-01",
+        end: "2030-01-01",
+        value: edata.eikibinyirmiucsubat.ebutunaylar,
+      },
     ];
 
     for (const range of edateRanges) {
@@ -284,14 +432,19 @@ $(function () {
       <input type="date" id="normteb" class="normtebInput" />
       <p class="approxResult"></p>
       <input type="number" class="piece" id="normPiece" value="1" min="1">
-      <p class="clean" id="clear">x</p>
+      <p class="clean" id="clear">x</p>      
     </div>
   `);
 
-    $("#totalPrice").text("Toplam Ücret: 0 ₺");
+    $("#totalPrice").text("Toplam Normal Tebligat Ücreti: 0 ₺");
   });
 
-  $("#eclearBtn").on("click", function () {
+  $("#clearBtn").on("click", function () {
+    $(".inp").val("");
+    $(".result").empty();
+  });
+
+  $(".eclearBtn").on("click", function () {
     $("#etebTable .scroll-container").html(`
     <div class="econtainer-content-product container-content-product">
       <input type="date" id="eteb" class="etebInput" />
@@ -301,6 +454,6 @@ $(function () {
     </div>
   `);
 
-    $("#etotalPrice").text("Toplam Ücret: 0 ₺");
+    $("#etotalPrice").text("Toplam E-Tebligat Ücreti: 0 ₺");
   });
 });
