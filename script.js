@@ -14,7 +14,7 @@ $(function () {
       .closest(".container-content-product")
       .find("#clear");
 
-    fetch("./data.json")
+    fetch("./src/data/data.json")
       .then((response) => response.json())
       .then((data) => {
         if (monthValue) {
@@ -78,7 +78,7 @@ $(function () {
      <div class="container-content-product">
           <input type="date" id="normteb" class="normtebInput" />
           <p class="approxResult"></p>
-          <input type="number" class="piece" id="normPiece" value="1" min="1">
+          <input type="number" class="piece normPiece" id="normPiece" value="1" min="1">
           <p class="clean" id="clear">x</p>
       </div>
     `;
@@ -101,7 +101,7 @@ $(function () {
           <div class="container-content-product">
             <input type="date" id="normteb" class="normtebInput" />
             <p class="approxResult"></p>
-            <input type="number" class="piece" id="normPiece" value="1" min="1">
+            <input type="number" class="piece normPiece" id="normPiece" value="1" min="1">
             <p class="clean" id="clear">x</p>
           </div>
         `;
@@ -241,7 +241,7 @@ $(function () {
       .closest(".econtainer-content-product")
       .find("#eclear");
 
-    fetch("./edata.json")
+    fetch("./src/data/edata.json")
       .then((response) => response.json())
       .then((edata) => {
         if (emonthValue) {
@@ -295,9 +295,6 @@ $(function () {
     var normTotal = $(".normtotal").text();
     var priceText = parseFloat(normTotal.replace(/[^\d.-]/g, "")) || 0;
 
-    const pieceValue = $("#normPiece").val();
-    const epieceValue = $("#ePiece").val();
-
     var eTotal = $(".etotal").text();
     var epriceText = parseFloat(eTotal.replace(/[^\d.-]/g, "")) || 0;
     epriceText = Math.abs(epriceText);
@@ -313,12 +310,8 @@ $(function () {
 
     $(".result").html(
       `
-        Normal Tebligat Gideri (${pieceValue} Adet): ${priceText.toLocaleString(
-        "tr-TR"
-      )} TL<br>
-        E-Tebligat Gideri (${epieceValue} Adet): ${epriceText.toLocaleString(
-        "tr-TR"
-      )} TL<br>
+        Normal Tebligat Gideri: ${priceText.toLocaleString("tr-TR")} TL<br>
+        E-Tebligat Gideri: ${epriceText.toLocaleString("tr-TR")} TL<br>
         Posta Gideri: ${postaGideri.toLocaleString("tr-TR")} TL<br>
         Bilirkişi Gideri: ${bilirkişiGideri.toLocaleString("tr-TR")} TL<br>
         İmaj-Export Gideri: ${imajExportGideri.toLocaleString("tr-TR")} TL <br>
@@ -346,12 +339,12 @@ $(function () {
         var result = toplamGider / divideValue;
         $("#resultAfterDivide").html(
           `
-          Normal Tebligat Gideri (${pieceValue} Adet): ${(
-            priceText / divideValue
-          ).toLocaleString("tr-TR")} TL<br>
-          E-Tebligat Gideri (${epieceValue} Adet): ${(
-            epriceText / divideValue
-          ).toLocaleString("tr-TR")} TL<br>
+          Normal Tebligat Gideri : ${(priceText / divideValue).toLocaleString(
+            "tr-TR"
+          )} TL<br>
+          E-Tebligat Gideri : ${(epriceText / divideValue).toLocaleString(
+            "tr-TR"
+          )} TL<br>
           Posta Gideri: ${(postaGideri / divideValue).toLocaleString(
             "tr-TR"
           )} TL<br>
@@ -437,7 +430,7 @@ $(function () {
       <div class="econtainer-content-product container-content-product">
           <input type="date" id="eteb" class="etebInput" />
           <p class="eapproxResult"></p>
-          <input type="number" class="piece" id="ePiece" value="1" min="1">
+          <input type="number" class="piece ePiece" id="ePiece" value="0" min="1">
           <p class="clean" id="eclear">x</p>
       </div>
     `;
@@ -460,7 +453,7 @@ $(function () {
           <div class="econtainer-content-product container-content-product">
             <input type="date" id="eteb" class="etebInput" />
             <p class="eapproxResult"></p>
-            <input type="number" class="piece" id="ePiece" value="1" min="1">
+            <input type="number" class="piece ePiece" id="ePiece" value="0" min="1">
             <p class="clean" id="eclear">x</p>
           </div>
         `;
@@ -538,7 +531,7 @@ $(function () {
     <div class="container-content-product">
       <input type="date" id="normteb" class="normtebInput" />
       <p class="approxResult"></p>
-      <input type="number" class="piece" id="normPiece" value="1" min="1">
+      <input type="number" class="piece normPiece" id="normPiece" value="0" min="1">
       <p class="clean" id="clear">x</p>      
     </div>
   `);
@@ -556,7 +549,7 @@ $(function () {
     <div class="econtainer-content-product container-content-product">
       <input type="date" id="eteb" class="etebInput" />
       <p class="eapproxResult"></p>
-      <input type="number" class="piece" id="ePiece" value="1" min="1">
+      <input type="number" class="piece normPiece" id="ePiece" value="0" min="1">
       <p class="clean" id="eclear">x</p>
     </div>
   `);
