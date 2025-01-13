@@ -310,18 +310,18 @@ $(function () {
 
     $(".result").html(
       `
-        Normal Tebligat Gideri: ${priceText} TL<br><br>
-        E-Tebligat Gideri: ${epriceText} TL<br><br>
-        Posta Gideri: ${postaGideri} TL<br><br>
-        Bilirkişi Gideri: ${bilirkişiGideri} TL<br><br>
-        İmaj-Export Gideri: ${imajExportGideri} TL <br><br>
-        Diğer Yargılama Giderleri: ${digerGiderler} TL <br><br>
-        Toplam Yargılama Gideri: ${toplamGider} TL <br><br>
+        Normal Tebligat Gideri: ${(priceText).toLocaleString("tr-TR")} TL<br>
+        E-Tebligat Gideri: ${(epriceText).toLocaleString("tr-TR")} TL<br>
+        Posta Gideri: ${(postaGideri).toLocaleString("tr-TR")} TL<br>
+        Bilirkişi Gideri: ${(bilirkişiGideri).toLocaleString("tr-TR")} TL<br>
+        İmaj-Export Gideri: ${(imajExportGideri).toLocaleString("tr-TR")} TL <br>
+        Diğer Yargılama Giderleri: ${(digerGiderler).toLocaleString("tr-TR")} TL <br>
+       <strong>Toplam Yargılama Gideri: ${(toplamGider).toLocaleString("tr-TR")} TL </strong> <br><hr><br> 
         <div class="dividecont"> 
-          Toplam Yargılama Giderini Sanık Bazında Bölün:  ${toplamGider} / 
+          Toplam Yargılama Giderini Sanık Bazında Bölün:  ${(toplamGider).toLocaleString("tr-TR")} / 
           <input type="number" id="divide" /> 
           <button id="divBtn">BÖL</button>
-        </div><br>
+        </div><br><hr><br>
         <div id="resultAfterDivide"></div> 
         `
     );
@@ -332,7 +332,15 @@ $(function () {
       if (divideValue && !isNaN(divideValue) && divideValue != 0) {
         var result = toplamGider / divideValue;
         $("#resultAfterDivide").html(
-          `Sanık bazında yargılama gideri: ${result.toFixed(2)} TL`
+          `
+          Normal Tebligat Gideri: ${(priceText / divideValue).toLocaleString("tr-TR")} TL<br>
+          E-Tebligat Gideri: ${(epriceText / divideValue).toLocaleString("tr-TR")} TL<br>
+          Posta Gideri: ${(postaGideri / divideValue).toLocaleString("tr-TR")} TL<br>
+          Bilirkişi Gideri: ${(bilirkişiGideri / divideValue).toLocaleString("tr-TR")} TL<br>
+          İmaj-Export Gideri: ${(imajExportGideri / divideValue).toLocaleString("tr-TR")} TL <br>
+          Diğer Yargılama Giderleri: ${(digerGiderler / divideValue).toLocaleString("tr-TR")} TL <br>
+          <strong>Sanık Bazında Toplam Yargılama Gideri: ${(toplamGider / divideValue).toLocaleString("tr-TR")} TL </strong>
+         `
         );
       } else {
         $("#resultAfterDivide").html(
@@ -340,8 +348,9 @@ $(function () {
         );
       }
     });
+
     $("#divide").keypress(function (e) {
-      if (e.which == 13) { 
+      if (e.which == 13) {
         $("#divBtn").click();
       }
     });
