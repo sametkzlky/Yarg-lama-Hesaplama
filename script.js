@@ -14,7 +14,7 @@ $(function () {
       .closest(".container-content-product")
       .find("#clear");
 
-    fetch("./data.json")
+    fetch("./src/data/data.json")
       .then((response) => response.json())
       .then((data) => {
         if (monthValue) {
@@ -241,7 +241,7 @@ $(function () {
       .closest(".econtainer-content-product")
       .find("#eclear");
 
-    fetch("./edata.json")
+    fetch("./src/data/edata.json")
       .then((response) => response.json())
       .then((edata) => {
         if (emonthValue) {
@@ -295,6 +295,9 @@ $(function () {
     var normTotal = $(".normtotal").text();
     var priceText = parseFloat(normTotal.replace(/[^\d.-]/g, "")) || 0;
 
+    const pieceValue = $("#normPiece").val();
+    const epieceValue = $("#ePiece").val();
+
     var eTotal = $(".etotal").text();
     var epriceText = parseFloat(eTotal.replace(/[^\d.-]/g, "")) || 0;
     epriceText = Math.abs(epriceText);
@@ -310,15 +313,25 @@ $(function () {
 
     $(".result").html(
       `
-        Normal Tebligat Gideri: ${(priceText).toLocaleString("tr-TR")} TL<br>
-        E-Tebligat Gideri: ${(epriceText).toLocaleString("tr-TR")} TL<br>
-        Posta Gideri: ${(postaGideri).toLocaleString("tr-TR")} TL<br>
-        Bilirkişi Gideri: ${(bilirkişiGideri).toLocaleString("tr-TR")} TL<br>
-        İmaj-Export Gideri: ${(imajExportGideri).toLocaleString("tr-TR")} TL <br>
-        Diğer Yargılama Giderleri: ${(digerGiderler).toLocaleString("tr-TR")} TL <br>
-       <strong>Toplam Yargılama Gideri: ${(toplamGider).toLocaleString("tr-TR")} TL </strong> <br><hr><br> 
+        Normal Tebligat Gideri (${pieceValue} Adet): ${priceText.toLocaleString(
+        "tr-TR"
+      )} TL<br>
+        E-Tebligat Gideri (${epieceValue} Adet): ${epriceText.toLocaleString(
+        "tr-TR"
+      )} TL<br>
+        Posta Gideri: ${postaGideri.toLocaleString("tr-TR")} TL<br>
+        Bilirkişi Gideri: ${bilirkişiGideri.toLocaleString("tr-TR")} TL<br>
+        İmaj-Export Gideri: ${imajExportGideri.toLocaleString("tr-TR")} TL <br>
+        Diğer Yargılama Giderleri: ${digerGiderler.toLocaleString(
+          "tr-TR"
+        )} TL <br>
+       <strong>Toplam Yargılama Gideri: ${toplamGider.toLocaleString(
+         "tr-TR"
+       )} TL </strong> <br><hr><br> 
         <div class="dividecont"> 
-          Toplam Yargılama Giderini Sanık Bazında Bölün:  ${(toplamGider).toLocaleString("tr-TR")} / 
+          Toplam Yargılama Giderini Sanık Bazında Bölün:  ${toplamGider.toLocaleString(
+            "tr-TR"
+          )} / 
           <input type="number" id="divide" /> 
           <button id="divBtn">BÖL</button>
         </div><br><hr><br>
@@ -333,13 +346,27 @@ $(function () {
         var result = toplamGider / divideValue;
         $("#resultAfterDivide").html(
           `
-          Normal Tebligat Gideri: ${(priceText / divideValue).toLocaleString("tr-TR")} TL<br>
-          E-Tebligat Gideri: ${(epriceText / divideValue).toLocaleString("tr-TR")} TL<br>
-          Posta Gideri: ${(postaGideri / divideValue).toLocaleString("tr-TR")} TL<br>
-          Bilirkişi Gideri: ${(bilirkişiGideri / divideValue).toLocaleString("tr-TR")} TL<br>
-          İmaj-Export Gideri: ${(imajExportGideri / divideValue).toLocaleString("tr-TR")} TL <br>
-          Diğer Yargılama Giderleri: ${(digerGiderler / divideValue).toLocaleString("tr-TR")} TL <br>
-          <strong>Sanık Bazında Toplam Yargılama Gideri: ${(toplamGider / divideValue).toLocaleString("tr-TR")} TL </strong>
+          Normal Tebligat Gideri (${pieceValue} Adet): ${(
+            priceText / divideValue
+          ).toLocaleString("tr-TR")} TL<br>
+          E-Tebligat Gideri (${epieceValue} Adet): ${(
+            epriceText / divideValue
+          ).toLocaleString("tr-TR")} TL<br>
+          Posta Gideri: ${(postaGideri / divideValue).toLocaleString(
+            "tr-TR"
+          )} TL<br>
+          Bilirkişi Gideri: ${(bilirkişiGideri / divideValue).toLocaleString(
+            "tr-TR"
+          )} TL<br>
+          İmaj-Export Gideri: ${(imajExportGideri / divideValue).toLocaleString(
+            "tr-TR"
+          )} TL <br>
+          Diğer Yargılama Giderleri: ${(
+            digerGiderler / divideValue
+          ).toLocaleString("tr-TR")} TL <br>
+          <strong>Sanık Bazında Toplam Yargılama Gideri: ${(
+            toplamGider / divideValue
+          ).toLocaleString("tr-TR")} TL </strong>
          `
         );
       } else {
