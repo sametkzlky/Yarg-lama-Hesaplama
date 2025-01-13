@@ -14,7 +14,7 @@ $(function () {
       .closest(".container-content-product")
       .find("#clear");
 
-    fetch("./src/data/data.json")
+    fetch("./data.json")
       .then((response) => response.json())
       .then((data) => {
         if (monthValue) {
@@ -241,7 +241,7 @@ $(function () {
       .closest(".econtainer-content-product")
       .find("#eclear");
 
-    fetch("./src/data/edata.json")
+    fetch("./edata.json")
       .then((response) => response.json())
       .then((edata) => {
         if (emonthValue) {
